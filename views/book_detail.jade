@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Title: #{book.title}
+  p <strong>Author:</strong> #{book.author}
+  p <strong>Genre:</strong> #{book.genre}
+  p <strong>Read:</strong> #{book.read?"Yes":"No"}
+  

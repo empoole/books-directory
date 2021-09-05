@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to <em> Eric's Book Directory</em>
+
+  if error
+    p Error getting dynamic content.
+  else
+
+    ul
+      li <strong>Books:</strong> !{data.book_count}
