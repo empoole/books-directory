@@ -6,7 +6,7 @@ var BookSchema = new Schema(
     {
         title: {type: String, required: true},
         author: {type: String, required: true},
-        genre: {type: String, required: true},
+        genre: [{type: Schema.Types.ObjectId, ref: 'Genre'}],
         read: {type: Boolean, required: true}
     }
 );

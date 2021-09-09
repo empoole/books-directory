@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+
+  form(name='add-book', method='post', action='')
+    div(class='form-group')
+      label(for='title') Title:
+      input(type='text', class='form-control', id='title', placeholder='Book Title', name='title', required='true', value=(undefined===book ? '' : book.title) )
+    div(class='form-group')
+      label(for='author') Author:
+      input(type='text', class='form-control', id='author', placeholder='Author', name='author', required='true', value=(undefined===book ? '' : book.author) )
+    div.form-group
+      label Genre:
+      div
+        for genre in genres
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
+            label(for=genre._id) #{genre.name}
+    div(class='form-group')
+      label Read:
+      div
+        for answer in [{text:'Yes', value: 1}, {text: 'No', value: 0}]
+          div(style='display: inline; padding-right:10px;')
+            input(type='checkbox', name='read', id=answer.text, class="checkbox-input", value=answer.value )
+            label(for=answer.text) #{answer.text}
+    button(class='btn btn-primary', type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

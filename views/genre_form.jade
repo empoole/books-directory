@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  form(name='genre-form', method='post', action='')
+    div(class='form-group')
+      label(for='name') Genre:
+      input(type='text', class='form-control', id='name', placeholder='Fantasy, Poetry etc.', name='name', value=(undefined===genre ? '' : genre.name))
+    butto(type='submit', class='btn btn-primary') Submit
+
+  if errors
+   ul
+    for error in errors
+     li!= error.msg

@@ -3,6 +3,9 @@ extends layout
 block content
   h1 Title: #{book.title}
   p <strong>Author:</strong> #{book.author}
-  p <strong>Genre:</strong> #{book.genre}
+  p <strong>Genre:</strong>
+    each val, index in book.genre
+      a(href=val.url) #{val.name}
+      if index < book.genre.length - 1
+        |,
   p <strong>Read:</strong> #{book.read?"Yes":"No"}
-  
