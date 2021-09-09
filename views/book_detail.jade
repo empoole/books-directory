@@ -9,3 +9,9 @@ block content
       if index < book.genre.length - 1
         |,
   p <strong>Read:</strong> #{book.read?"Yes":"No"}
+
+hr
+  p
+    a(href=book.url+'/delete') Delete Book
+  p
+    a(href=book.url+'/update') Update Book

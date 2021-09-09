@@ -1,4 +1,4 @@
-const { body,validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 
 var Genre = require('../models/genre');
 var Book = require('../models/book');
@@ -41,7 +41,7 @@ exports.genre_add_get = function(req, res) {
 };
 
 // Handle Genre add on POST.
-exports.genre_add_post =  [
+exports.genre_add_post = [
     // Validate and santize the name field.
     body('name', 'Genre name required').trim().isLength({ min: 1 }).escape(),
 
