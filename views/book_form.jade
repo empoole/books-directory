@@ -20,9 +20,9 @@ block content
     div(class='form-group')
       label Read:
       div
-        for answer in [{text:'Yes', value: 1}, {text: 'No', value: 0}]
+        for answer in [{text:'Yes', value: true}, {text: 'No', value: false}]
           div(style='display: inline; padding-right:10px;')
-            input(type='checkbox', name='read', id=answer.text, class="checkbox-input", value=answer.value )
+            input(type='checkbox', name='read', id=answer.text, class="checkbox-input", value=answer.value, checked=(undefined === book?false:book.read===answer.value) )
             label(for=answer.text) #{answer.text}
     button(class='btn btn-primary', type='submit') Submit
 

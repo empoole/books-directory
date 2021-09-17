@@ -205,8 +205,6 @@ exports.book_update_get = function(req, res) {
                 }
             }
         }
-        // TODO:
-        // Make sure "read" is checked
 
         // res.render('book_form', { title: 'Update Book', authors: results.authors, genres: results.genres, book: results.book });
         res.render('book_form', { title: 'Update Book', genres: results.genres, book: results.book, errors: {} });
