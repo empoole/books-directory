@@ -1,11 +1,18 @@
-var Book = require('../models/book');
-var Genre = require('../models/genre');
+const Book = require('../models/book');
+const Genre = require('../models/genre');
 
-var async = require('async');
+const async = require('async');
 
 const { body,validationResult } = require('express-validator');
 
-// Home Page
+/**
+ * Display Home Page (Depricated since moving to React)
+ *
+ * @param   {[type]}  req  [req description]
+ * @param   {[type]}  res  [res description]
+ *
+ * @return  {[type]}       [return description]
+ */
 exports.index = function(req, res) {
     async.parallel({
         book_count: function(callback) {
@@ -16,18 +23,32 @@ exports.index = function(req, res) {
     });
 };
 
-// Display list of all books.
+/**
+ * Send a list of all books in the database to the client
+ *
+ * @param   {[type]}  req  [req description]
+ * @param   {[type]}  res  [res description]
+ *
+ * @return  {void}
+ */
 exports.book_list = function(req, res) {
     Book.find({}, 'title author genre read')
         // .populate('author')
         .populate('genre')
         .exec(function (err, list_books) {
             if (err) { return next(err); }
-            res.render('book_list', { title: 'Book List', book_list: list_books });
+            res.send( { book_list: list_books } );
         });
 };
 
-// Display detail page for a specific book.
+/**
+ * [book_detail description]
+ *
+ * @param   {[type]}  req  [req description]
+ * @param   {[type]}  res  [res description]
+ *
+ * @return  {[type]}       [return description]
+ */
 exports.book_detail = function(req, res) {
     async.parallel({
         book: function(callback) {
@@ -35,13 +56,14 @@ exports.book_detail = function(req, res) {
         }
     }, function(err, results) {
         if (err) { return next(err); }
-        if (results.book==null) { // No results.
-            var err = new Error('Book not found');
+        if (results.book==null) {
+            const err = new Error('Book not found');
             err.status = 404;
             return next(err);
         }
-        // Successful, so render.
-        res.render('book_detail', { title: results.book.title, book: results.book } );
+
+        // res.render('book_detail', { title: results.book.title, book: results.book } );
+        res.send( results.book );
     });
 };
 

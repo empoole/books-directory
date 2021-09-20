@@ -2,17 +2,19 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+const opts = { toJSON: { virtuals: true } };
+
 var GenreSchema = new Schema(
     {
         name: {type: String, required: true, maxlength: 100, minlength: 3},
-    }
+    }, opts
 );
 
 // Virtual for book's URL
 GenreSchema
 .virtual('url')
 .get(function () {
-    return '/catalog/genre/' + this._id;
+    return '/genre/' + this._id;
 });
 
 //Export model

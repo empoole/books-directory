@@ -1,0 +1,36 @@
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+table,
+th,
+td,
+tr {
+    border: 1px solid aliceblue;
+}
+
+th, td {
+    padding: 0.25rem 0.5rem;
+}
+
+.edit-button {
+    background-color: #1b7b4d;
+    color: whitesmoke;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    margin: 0.5rem auto;
+    display: block;
+    transition: background-color 0.5s;
+}
+
+.edit-button:hover {
+    background-color: #1ba362;
+}
+
+.edit-button:visited {
+    color: unset;
+}
